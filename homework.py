@@ -136,6 +136,7 @@ class Swimming(Training):
         return (
             (self.get_mean_speed() + self.CALORIES_MEAN_SPEED_SHIFT)
             * self.CALORIES_WEIGHT_MULTIPLIER
+            * self.weight
             * self.duration
         )
 
