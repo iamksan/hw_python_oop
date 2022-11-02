@@ -82,6 +82,7 @@ class SportsWalking(Training):
     CALORIES_WEIGHT_MULTIPLIER: float = 0.035
     CALORIES_SPEED_HEIGHT_MULTIPLIER: float = 0.029
     KMH_IN_MSEC: float = 0.278
+    CM_IN_M: float = 123.1
 
     def __init__(
         self,
@@ -104,6 +105,7 @@ class SportsWalking(Training):
             * self.duration
             * self.MIN_IN_H
             * self.KMH_IN_MSEC
+            * self.CM_IN_M
         )
 
 
