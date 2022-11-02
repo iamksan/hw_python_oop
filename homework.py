@@ -105,7 +105,7 @@ class SportsWalking(Training):
             * self.duration
             * self.MIN_IN_H
             * self.KMH_IN_MSEC
-            * self.CM_IN_M
+            / self.CM_IN_M
         )
 
 
@@ -136,7 +136,7 @@ class Swimming(Training):
         return (
             (self.get_mean_speed() + self.CALORIES_MEAN_SPEED_SHIFT)
             * self.CALORIES_WEIGHT_MULTIPLIER
-            * self.weight
+            * self.duration
         )
 
 
