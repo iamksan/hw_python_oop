@@ -111,7 +111,6 @@ class SportsWalking(Training):
         )
 
 
-
 class Swimming(Training):
     """Тренировка: плавание."""
     LEN_STEP: float = 1.38
