@@ -99,8 +99,7 @@ class SportsWalking(Training):
             (
                 self.CALORIES_WEIGHT_MULTIPLIER * self.weight
                 + (
-                    self.get_mean_speed()
-                    * self.KMH_IN_MSEC**2
+                    (self.get_mean_speed() * self.KMH_IN_MSEC) ** 2
                     / self.height
                     * self.CM_IN_M
                 )
@@ -110,6 +109,7 @@ class SportsWalking(Training):
             * self.duration
             * self.MIN_IN_H
         )
+
 
 
 class Swimming(Training):
