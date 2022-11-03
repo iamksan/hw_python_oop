@@ -19,8 +19,7 @@ class InfoMessage:
     )
 
     def get_message(self) -> None:
-        t = asdict(self)
-        return self.MESSAGE.format(*t.values())
+        return self.MESSAGE.format(*asdict(self).values())
 
 
 class Training:
@@ -130,9 +129,7 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
-        c_p = self.count_pool
-        l_p = self.lenght_pool
-        return l_p * c_p / self.M_IN_KM / self.duration
+        return self.lenght_pool * self.count_pool / self.M_IN_KM / self.duration
 
     def get_spent_calories(self) -> float:
         return (
@@ -145,9 +142,14 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    train_class = {"SWM": Swimming, "RUN": Running, "WLK": SportsWalking}
-    return train_class[workout_type](*data)
-
+    parameters_train = {
+        'SWM': Swimming,
+        'RUN': Running,
+        'WLK': SportsWalking}
+    if workout_type in parameters_train:
+        return parameters_train[workout_type](*data)
+    else:
+        raise ValueError("Сообщение об ошибке")
 
 def main(training: Training) -> None:
     """Главная функция."""
