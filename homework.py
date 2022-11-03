@@ -127,7 +127,7 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
-        c_p = self.count_pool
+        c_p = self.count_pool #если вместо c_p ставлю self.count_pool, то вылезает ошибка 80>79 не могу понять как исправить
         return self.lenght_pool * c_p / self.M_IN_KM / self.duration
 
     def get_spent_calories(self) -> float:
@@ -144,8 +144,8 @@ def read_package(workout_type: str, data: list) -> Training:
     parameters_train = {"SWM": Swimming, "RUN": Running, "WLK": SportsWalking}
     if workout_type in parameters_train:
         return parameters_train[workout_type](*data)
-    else:
-        raise ValueError("Сообщение об ошибке")
+    if workout_type in parameters_train:
+        raise ValueError("Тренировка не найдена!")
 
 
 def main(training: Training) -> None:
