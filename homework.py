@@ -78,17 +78,14 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
+
     CALORIES_WEIGHT_MULTIPLIER: float = 0.035
     CALORIES_SPEED_HEIGHT_MULTIPLIER: float = 0.029
     KMH_IN_MSEC: float = 0.278
     CM_IN_M: int = 100
 
     def __init__(
-        self,
-        action: int,
-        duration: float,
-        weight: float,
-        height: float
+        self, action: int, duration: float, weight: float, height: float
     ) -> None:
         super().__init__(action, duration, weight)
         self.height = height
@@ -112,6 +109,7 @@ class SportsWalking(Training):
 
 class Swimming(Training):
     """Тренировка: плавание."""
+
     LEN_STEP: float = 1.38
     CALORIES_MEAN_SPEED_SHIFT: float = 1.1
     CALORIES_WEIGHT_MULTIPLIER: int = 2
@@ -122,14 +120,15 @@ class Swimming(Training):
         duration: float,
         weight: float,
         length_pool: float,
-        count_pool: float
+        count_pool: float,
     ) -> None:
         super().__init__(action, duration, weight)
         self.lenght_pool = length_pool
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
-        return self.lenght_pool * self.count_pool / self.M_IN_KM / self.duration
+        c_p = self.count_pool
+        return self.lenght_pool * c_p / self.M_IN_KM / self.duration
 
     def get_spent_calories(self) -> float:
         return (
@@ -142,14 +141,12 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    parameters_train = {
-        'SWM': Swimming,
-        'RUN': Running,
-        'WLK': SportsWalking}
+    parameters_train = {"SWM": Swimming, "RUN": Running, "WLK": SportsWalking}
     if workout_type in parameters_train:
         return parameters_train[workout_type](*data)
     else:
         raise ValueError("Сообщение об ошибке")
+
 
 def main(training: Training) -> None:
     """Главная функция."""
