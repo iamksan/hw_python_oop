@@ -127,8 +127,12 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
-        c_p = self.count_pool #если вместо c_p ставлю self.count_pool, то вылезает ошибка 80>79 не могу понять как исправить
-        return self.lenght_pool * c_p / self.M_IN_KM / self.duration
+        return (
+        self.lenght_pool
+        * self.count_pool
+        / self.M_IN_KM
+        / self.duration
+    )
 
     def get_spent_calories(self) -> float:
         return (
